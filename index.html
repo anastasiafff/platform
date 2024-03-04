@@ -9,21 +9,90 @@
       box-sizing: border-box;
     }
 
-    body {
+    html {
       font-family: Arial, Helvetica, sans-serif;
-      background-image: url('https://wallpapercave.com/wp/wp5856452.jpg'); /* Add your background image URL here */
+      background-image: url('https://wallpapercave.com/wp/wp5856452.jpg'); /* Background image URL */
       background-size: cover;
       background-position: center;
       margin: 0;
       padding: 0;
     }
 
-    /* Rest of your existing styles remain unchanged */
+    /* Style the header */
+    header {
+      background-color: rgb(246, 202, 255);
+      padding: 30px;
+      text-align: center;
+      font-size: 35px;
+      color: white;
+    }
 
+    /* Create two columns/boxes that float next to each other */
+    nav {
+      float: left;
+      width: 200px; /* Fixed width */
+      background: #c5c1c1;
+      padding: 20px;
+    }
+
+    /* Style the list inside the menu */
+    article {
+      float: left;
+      padding: 21px;
+      width: 70%;
+      background-color: #e0dada;
+      height: 300px; /* Fixed height for demonstration, adjust as needed */
+    }
+
+    /* Clear floats after the columns */
+    section::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Style the footer */
+    footer {
+      background-color: #ffc5c5;
+      padding: 10px;   
+      text-align: center;
+      color: rgb(236, 218, 218);
+    }
+
+    /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+    @media (max-width: 600px) {
+      nav, article {
+        width: 100%;
+        height: auto;
+      }
+    }
   </style>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <!-- Your existing HTML code remains unchanged -->
+  <header>
+    <h2>Hallo, I'm Anastasia Febriyanti</h2>
+  </header>
+  <section>
+    <nav>
+      <p style="text-align:center;"><img src="https://img.freepik.com/free-vector/flat-distorted-checkered-background_23-2148971733.jpg" 
+        alt="Anastasia Febriyanti" width="250"></p>   
+    </nav>
+    <article>
+      <h1><b>About me</b></h1>
+      <p>Perkenalkan nama saya <strong>Anastasia Febriyanti biasanya dipanggil Anas</strong>.Saya lahir di Sintang, 03 Februari 2004 sekarang saya adalah Mahasiswa Universitas Sanata Dharma dari program studi <i>informatics</i></p>
+      <p>Berikut adalah riwayat pendidikan saya : </p>
+      <ul>
+        <li>SD : SD Panca Setya 2 Sintang</li>
+        <li>SMP : SMP Panca Setya 2 Sintang</li>
+        <li>SMA : SMAN Swasta Panca Setya Sintang</li>
+      </ul>
+      <p>Saya mempunyai hobi Jalan-jalan  </p>
+    </article>
+
+    <footer>
+      <p>klik <a href="https://www.instagram.com/anastasiaff__?igsh=MXJsZGZjZjh6dzdkYQ==">disini</a> untuk mengetahui instagram saya </p>
+    </footer>
+  </section>
 </body>
 </html>
