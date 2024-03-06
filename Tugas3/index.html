@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Tugas3/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,3 +138,144 @@
   </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biodata</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: url('https://i.pinimg.com/originals/37/4c/93/374c9312b719bd668c10171f45b51407.jpg');
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: rgb(246, 202, 255);
+      padding: 30px;
+      text-align: center;
+      font-size: 35px;
+      color: white;
+    }
+
+    nav {
+      float: left;
+      height: 350px;
+      background:blue;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    article {
+      float: left;
+      padding: 21px;
+      width: 70%;
+      background-color:#ac5050;
+      height: auto;
+      display: none;
+      border-radius: 10px;
+    }
+
+    section::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    footer {
+      background-color: #ffc5c5;
+      padding: 10px;
+      text-align: center;
+      color: rgb(165, 122, 122);
+      border-radius: 10px;
+    }
+
+    @media (max-width: 600px) {
+      nav, article {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    button {
+      background-color: #ff9696;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    img {
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    h1 {
+      color: white;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+  </style>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <header>
+    <h2>Hallo, I'm Anastasia Febriyanti</h2>
+  </header>
+  <section>
+    <nav>
+      <p style="text-align:center;"><img src="ft1.jpg" alt="anastasia febriyanti" width="200px"></p>
+    </nav>
+    <article>
+      <h1><b>About me</b></h1>
+      <p>Perkenalkan nama saya <strong>Anastasia Febriyanti biasanya dipanggil Anas</strong>. Saya lahir di Sintang, 03 Februari 2004, dan sekarang saya adalah Mahasiswa Universitas Sanata Dharma dari program studi <i>informatics</i></p>
+      <p>Berikut adalah riwayat pendidikan saya :</p>
+      <ul>
+        <li>SD: SD Panca Setya 2 Sintang</li>
+        <li>SMP: SMP Panca Setya 2 Sintang</li>
+        <li>SMA: SMA Swasta Panca Setya Sintang</li>
+      </ul>
+    </article>
+
+    <button onclick="toggleAboutMe()">About Me</button>
+    <button onclick="openTikTokLink()">TikTok Link</button>
+
+    <footer>
+      <p>klik <a href="https://www.instagram.com/anastasiaff__?igsh=MXJsZGZjZjh6dzdkYQ==">disini</a> untuk mengetahui Instagram saya</p>
+    </footer>
+  </section>
+
+  <script>
+    function toggleAboutMe() {
+      var aboutMe = document.querySelector('article');
+      aboutMe.style.display = (aboutMe.style.display === 'none' || aboutMe.style.display === '') ? 'block' : 'none';
+    }
+
+    function openTikTokLink() {
+      window.location.href = 'https://www.tiktok.com/@anastasiafff_?_t=8kOhbUhDDV3&_r=1';
+      // Replace the URL above with your TikTok profile link
+    }
+  </script>
+</body>
+</html>
+>>>>>>> 7690ec0db32b533392a0245595a027d2133dc0db:index.html
