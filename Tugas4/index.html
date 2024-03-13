@@ -2,20 +2,124 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FORM </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            margin-bottom: 10px;
+        }
+
+        #options {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #result {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .option-label {
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Tugas 4 - JavaScript</h1>
-    <form action="#">
-        <label for="nama">Nama:</label>
-        <input type="text" id="nama" name="nama">
-        <br>
-        <label for="jumlahPilihan">Jumlah Pilihan:</label>
-        <input type="number" id="jumlahPilihan" name="jumlahPilihan">
-        <br>
-        <br>
-        <button type="submit">OK</button>
+    <header>
+        <h1>Anastasia Febriyanti</h1>
+        <p>225314033</p>
+        <!-- Add your photo here -->
+    </header>
+
+    <form id="inputForm">
+        <label for="name">Nama :</label>
+        <input type="text" id="name" required>
+
+        <label for="quantity">Jumlah Pilihan :</label>
+        <input type="number" id="quantity" min="1" required>
+
+        <button type="button" onclick="showOptions()">OK</button>
     </form>
-    <script src="script.js"></script>
+
+    <div id="options">
+        <h2>Pilihan :</h2>
+        <form id="optionsForm" onsubmit="showResult(); return false;">
+            <!-- Options will be dynamically added here using JavaScript -->
+            <button type="submit">OK</button>
+        </form>
+    </div>
+
+    <div id="result">
+        <h2>Hasil :</h2>
+        <p id="resultText"></p>
+    </div>
+
+    <script>
+        function showOptions() {
+            const quantity = document.getElementById('quantity').value;
+            const optionsDiv = document.getElementById('options');
+            const optionsForm = document.getElementById('optionsForm');
+
+            optionsForm.innerHTML = ''; // Clear previous options
+
+            for (let i = 1; i <= quantity; i++) {
+                const label = document.createElement('label');
+                label.innerHTML = `Pilihan ${i} :`;
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = `Teks Pilihan ${i}`;
+                input.required = true;
+                input.name = `option${i}`;
+
+                optionsForm.appendChild(label);
+                optionsForm.appendChild(input);
+            }
+
+            optionsDiv.style.display = 'block';
+        }
+
+        function showResult() {
+            const name = document.getElementById('name').value;
+            const quantity = document.getElementById('quantity').value;
+            const optionsForm = document.getElementById('optionsForm');
+            const resultDiv = document.getElementById('result');
+            const resultText = document.getElementById('resultText');
+
+            let selectedOption;
+
+            for (let i = 1; i <= quantity; i++) {
+                const option = document.querySelector(`input[name="option${i}"]`);
+                if (option.value === '') {
+                    alert('Semua Teks Pilihan harus diisi.');
+                    return;
+                }
+
+                if (option.checked) {
+                    selectedOption = option.value;
+                }
+            }
+
+            resultText.innerHTML = `Hallo, nama saya ${name}, saya mempunyai sejumlah ${quantity} pilihan yaitu `;
+            for (let i = 1; i <= quantity; i++) {
+                resultText.innerHTML += `<span>${document.querySelector(`input[name="option${i}"]`).value}</span>`;
+                if (i < quantity) {
+                    resultText.innerHTML += ', ';
+                }
+            }
+            resultText.innerHTML += `, dan saya memilih ${selectedOption}.`;
+
+            resultDiv.style.display = 'block';
+        }
+    </script>
 </body>
-</html>
+</html>    
