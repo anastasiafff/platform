@@ -1,125 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+      }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
 
-        input, select {
-            margin-bottom: 10px;
-        }
+      input,
+      select {
+        margin-bottom: 10px;
+      }
 
-        #options {
-            display: none;
-            margin-top: 20px;
-        }
+      #options {
+        display: none;
+        margin-top: 20px;
+      }
 
-        #result {
-            display: none;
-            margin-top: 20px;
-        }
+      #result {
+        display: none;
+        margin-top: 20px;
+      }
 
-        .option-label {
-            margin-right: 10px;
-        }
+      .option-label {
+        margin-right: 10px;
+      }
+
+      .inputForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        width: 100%;
+        min-height: 40vh;
+        max-height: max-content;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
     </style>
-</head>
-<body>
+  </head>
+
+  <body>
     <header>
-        <h1>Anastasia Febriyanti</h1>
-        <p>225314033</p>
-        <!-- Add your photo here -->
+      <div class="d-flex flex-row bg-warning-subtle text-center p-2 align-items-center">
+        <img src="./ft1.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover; border-radius: 100%" />
+        <div class="flex-column d-flex text-left justify-align-start align-items-start p-2">
+          <h1>Anastasia Febriyanti</h1>
+          <p>225314033</p>
+        </div>
+      </div>
+      <!-- Add your photo here -->
     </header>
-
-    <form id="inputForm">
-        <label for="name">Nama :</label>
-        <input type="text" id="name" required>
-
-        <label for="quantity">Jumlah Pilihan :</label>
-        <input type="number" id="quantity" min="1" required>
-
-        <button type="button" onclick="showOptions()">OK</button>
-    </form>
-
-    <div id="options">
-        <h2>Pilihan :</h2>
-        <form id="optionsForm" onsubmit="showResult(); return false;">
-            <!-- Options will be dynamically added here using JavaScript -->
-            <button type="submit">OK</button>
+    <div class="container">
+      <div class="formsContainer card p-3">
+        <form id="inputForm">
+          <div class="">
+            <label for="name" class="form-label">Nama :</label>
+            <input type="text" id="name" class="form-control" required />
+          </div>
+          <div class="">
+            <label for="quantity" class="form-label">Jumlah Pilihan :</label>
+            <input type="number" id="quantity" class="form-control" min="1" required />
+          </div>
+          <button type="button" onclick="showOptions()" class="btn btn-primary">OK</button>
         </form>
-    </div>
+      </div>
 
-    <div id="result">
+      <div id="options" class="card p-3">
+        <h2>Pilihan :</h2>
+        <form id="optionsForm">
+          <button type="submit" class="btn btn-primary">OK</button>
+        </form>
+      </div>
+
+      <div id="result">
         <h2>Hasil :</h2>
-        <p id="resultText"></p>
+        <div id="resultText"></div>
+      </div>
     </div>
 
     <script>
-        function showOptions() {
-            const quantity = document.getElementById('quantity').value;
-            const optionsDiv = document.getElementById('options');
-            const optionsForm = document.getElementById('optionsForm');
+      function showOptions() {
+        const quantity = document.getElementById("quantity").value;
+        const optionsDiv = document.getElementById("options");
+        const optionsForm = document.getElementById("optionsForm");
+        const okeButton = document.createElement("button");
+        const formsContainer = document.querySelector(".formsContainer");
+        okeButton.innerHTML = "Selanjutnya";
+        okeButton.classList.add("btn", "btn-primary");
+        okeButton.type = "button";
 
-            optionsForm.innerHTML = ''; // Clear previous options
-
-            for (let i = 1; i <= quantity; i++) {
-                const label = document.createElement('label');
-                label.innerHTML = `Pilihan ${i} :`;
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.placeholder = `Teks Pilihan ${i}`;
-                input.required = true;
-                input.name = `option${i}`;
-
-                optionsForm.appendChild(label);
-                optionsForm.appendChild(input);
-            }
-
-            optionsDiv.style.display = 'block';
+        if (quantity < 1) {
+          alert("Jumlah pilihan harus lebih dari 0");
+          return;
         }
+        formsContainer.style.display = "none";
+        optionsForm.innerHTML = ""; // Clear previous options
 
-        function showResult() {
-            const name = document.getElementById('name').value;
-            const quantity = document.getElementById('quantity').value;
-            const optionsForm = document.getElementById('optionsForm');
-            const resultDiv = document.getElementById('result');
-            const resultText = document.getElementById('resultText');
+        for (let i = 1; i <= quantity; i++) {
+          const label = document.createElement("label");
+          label.classList.add("form-label");
+          label.innerHTML = `Pilihan ${i} :`;
+          const input = document.createElement("input");
+          input.type = "text";
+          input.classList.add("form-control");
+          input.placeholder = `Teks Pilihan ${i}`;
+          input.required = true;
+          input.name = `option${i}`;
+          input.id = `inputPilihan${i}`;
 
-            let selectedOption;
-
-            for (let i = 1; i <= quantity; i++) {
-                const option = document.querySelector(`input[name="option${i}"]`);
-                if (option.value === '') {
-                    alert('Semua Teks Pilihan harus diisi.');
-                    return;
-                }
-
-                if (option.checked) {
-                    selectedOption = option.value;
-                }
-            }
-
-            resultText.innerHTML = `Hallo, nama saya ${name}, saya mempunyai sejumlah ${quantity} pilihan yaitu `;
-            for (let i = 1; i <= quantity; i++) {
-                resultText.innerHTML += `<span>${document.querySelector(`input[name="option${i}"]`).value}</span>`;
-                if (i < quantity) {
-                    resultText.innerHTML += ', ';
-                }
-            }
-            resultText.innerHTML += `, dan saya memilih ${selectedOption}.`;
-
-            resultDiv.style.display = 'block';
+          optionsForm.appendChild(label);
+          optionsForm.appendChild(input);
         }
+        okeButton.onclick = showRadio;
+        optionsForm.appendChild(okeButton);
+        optionsDiv.style.display = "block";
+      }
+
+      const showRadio = () => {
+        const optionsBefore = document.getElementById("optionsForm");
+        const quantity = document.getElementById("quantity").value;
+        const optionsDiv = document.getElementById("options");
+        const optionsContainer = document.createElement("div"); // Rename optionsForm to optionsContainer
+        const okeButton = document.createElement("button");
+        okeButton.innerHTML = "Hasil";
+        okeButton.classList.add("btn", "btn-primary");
+        okeButton.type = "button";
+        optionsBefore.style.display = "none";
+        const style = document.createElement("style");
+        style.innerHTML = `
+        .optionsForm {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .option-label {
+            margin-right: 10px;
+        }
+    `;
+        optionsContainer.innerHTML = `
+            <div className="">
+        <div id="optionsForm" class="optionsForm"></div>
+    </div>
+    `;
+        optionsContainer.appendChild(style);
+        optionsDiv.appendChild(optionsContainer);
+
+        for (let i = 1; i <= quantity; i++) {
+          const container = document.createElement("div");
+          container.className = "optionsForm";
+          container.classList.add("form-check");
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = "radioInp";
+          input.classList.add("form-check-input", "px-2");
+          input.required = true;
+          const labelPilihan = document.getElementById(`inputPilihan${i}`).value;
+          const label = document.createElement("label");
+          label.innerHTML = labelPilihan;
+          label.className = "form-check-label px-2 option-label";
+          container.appendChild(input);
+          container.appendChild(label);
+          optionsContainer.appendChild(container); // Change optionsForm to optionsContainer
+        }
+        okeButton.onclick = showResult;
+        optionsDiv.appendChild(okeButton);
+        optionsDiv.style.display = "block";
+      };
+
+      function showResult() {
+        const name = document.getElementById("name").value;
+        const quantity = document.getElementById("quantity").value;
+        const resultText = document.getElementById("resultText");
+
+        resultText.innerHTML = `Hallo, nama saya ${name}, saya mempunyai sejumlah ${quantity} pilihan yaitu `;
+        let anyOptionSelected = false;
+        for (let i = 1; i <= quantity; i++) {
+          const input = document.getElementById(`inputPilihan${i}`);
+          resultText.innerHTML += `<span>${input.value}</span>`;
+          if (i <= quantity) {
+            resultText.innerHTML += ", ";
+          }
+          if (input.value !== "") {
+            anyOptionSelected = true;
+          }
+        }
+        if (!anyOptionSelected) {
+          resultText.innerHTML += `<span>(tidak ada pilihan)</span>`;
+        }
+        resultText.innerHTML += `dan saya memilih <span>${document.querySelector('input[name="radioInp"]:checked').nextSibling.textContent}</span>.`;
+        document.getElementById("options").style.display = "none";
+        document.getElementById("result").style.display = "block";
+      }
     </script>
-</body>
-</html>    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
